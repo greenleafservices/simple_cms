@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
-    root 'demo#index'
+    root 'march1#index2'
     get 'demo/index'
+    get 'march1/index2'
+    get 'march1/index3'
     
     # default route
     # may go away in future versions of Rails 
