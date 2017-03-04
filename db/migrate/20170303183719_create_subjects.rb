@@ -6,6 +6,7 @@ class CreateSubjects < ActiveRecord::Migration[5.0]
       t.boolean "visible", :default => false
       t.timestamps
     end
+  end
 
   def down
     drop_table :subjects
