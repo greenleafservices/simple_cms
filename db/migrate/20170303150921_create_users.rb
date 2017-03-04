@@ -5,15 +5,15 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string "last_name", :limit => 50
       t.string "email", :default => '', :null => false
       t.string "password", :limit => 40
-      
+
       t.timestamps
       # t.datetime "created_at"
       # t.datetime "updated_at"
     end
   end
-  
+#
   def down
-    drop_table :users 
+    drop_table :users
   end
-  
+
 end

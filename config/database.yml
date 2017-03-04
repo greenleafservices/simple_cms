@@ -16,7 +16,7 @@ default: &default
   username: rails_user
   password: jms3172
   host: localhost
-
+#
 development:
   <<: *default
   database: simple_cms_development
