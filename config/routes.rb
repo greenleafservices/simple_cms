@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
 
+  #get 'sections/index'
+
+  #get 'sections/show'
+
+  #get 'sections/new'
+
+  #get 'sections/edit'
+
+  #get 'sections/delete'
+
+  #get 'pages/index'
+
+  #get 'pages/show'
+
+  #get 'pages/new'
+
+  #get 'pages/edit'
+
+  #get 'pages/delete'
+
 # These match routes (defaults) were commented in lesson 07-03
 
   #get 'subjects/index'
@@ -9,9 +29,22 @@ Rails.application.routes.draw do
   #get 'subjects/delete'
 
     root 'demo#index'
+
     resources :subjects do # default
       member do
         get :delete #should be added ,no part of default resources
+      end
+    end
+
+    resources :pages do #default
+      member do
+        get :delete
+      end
+    end
+
+    resources :sections do
+      member do
+        get :delete
       end
     end
 
