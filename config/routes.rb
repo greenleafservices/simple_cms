@@ -38,13 +38,13 @@ Rails.application.routes.draw do
 
     resources :pages do #default
       member do
-        get :delete
+        get :delete # not added by default
       end
     end
 
     resources :sections do
       member do
-        get :delete
+        get :delete # not added by default
       end
     end
 

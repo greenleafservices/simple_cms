@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+
+    layout 'admin'
+    
   def index
     @pages = Page.sorted # ==> multiple instance
   end
@@ -8,11 +11,11 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new({:name => 'Default'})
+    @page = Page.new
   end
 
   def create
-    # Instantiate a new object using form parameters
+    # Instantiate a new object using mass assignment and form parameters
     @page = Page.new(page_params) #private def below
     # Save the object
     if @page.save

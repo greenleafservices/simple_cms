@@ -1,10 +1,5 @@
-<!-- <link rel="stylesheet" type="text/css" href="app\assets\stylesheets\styles.css"> -->
+<% @page_title = "Show Section" %>
 
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
 
 <%= link_to("<< Back to List", sections_path, :class => 'back-link') %>
 <!--  pages_path above is a URL helper -->
