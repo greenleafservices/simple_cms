@@ -8,6 +8,20 @@
   <%= form_for(@subject, :method => 'delete') do |f| %>
 
     <p>Are you sure you want to permanently delete this subject?</p>
+    <!-- <FORM method="POST"
+          onSubmit="return checkDelete(this,'A');"
+    >
+
+    <INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+    A. Yes<BR>
+
+    <INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+    B. No<BR>
+
+
+    <INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+
+    </FORM> -->
 
     <p class="reference-name"><%= f.object.name %></p>
 

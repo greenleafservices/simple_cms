@@ -1,5 +1,5 @@
 class DemoController < ApplicationController
-    layout false
+    layout 'application'
 
     def index #this is an action
         render('index') #the default action - does not need to be specified

@@ -6,3 +6,24 @@
 
 
 <%= link_to('Hello with parameters', {:action => 'hello', :page => 5, :id => 20}) %><br />
+
+<%= link_to('Roar', '#', :onclick => "jsRoar('JavaScript'); return true;") %>
+<br> <br>
+What is JavaScript?
+
+<FORM method="POST"
+      onSubmit="return checkAnswer(this,'B');"
+>
+
+<INPUT TYPE="RADIO" VALUE="A" NAME="cc">
+A. Another name for Java<BR>
+
+<INPUT TYPE="RADIO" VALUE="B" NAME="cc">
+B. A scripting language mostly for the web<BR>
+
+<INPUT TYPE="RADIO" VALUE="C" NAME="cc">
+C. When you use Java without compiling<BR>
+
+<INPUT TYPE="SUBMIT" VALUE="Submit Answer">
+
+</FORM>
