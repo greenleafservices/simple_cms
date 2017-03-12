@@ -9,9 +9,9 @@
     <tr class="header">
       <th>ID</th>
       <th>Subject ID</th>
+      <th>Position</th>
       <th>Name</th>
       <th>Permalink</th>
-      <th>Position</th>
       <th>Visible</th>
       <th>Actions</th>
     </tr>
@@ -21,9 +21,9 @@
     <tr>
       <td><%= page.id %></td>
       <td><%= page.subject_id %></td>
+      <td><%= page.position %></td>
       <td><%= page.name %></td>
       <td><%= page.permalink %></td>
-      <td><%= page.position %></td>
       <!-- <td class="center"><%= page.visible ? 'Yes' : 'No' %></td> -->
       <td class="center"><%= status_tag(page.visible) %></td>
       <td class="actions">

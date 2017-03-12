@@ -2,7 +2,7 @@
 
 
 <div class="sections index">
-  <h2>Pages</h2>
+  <h2>Sections</h2>
 
   <%= link_to("Add New Section", new_section_path, :class => 'action new') %>
 
@@ -10,8 +10,8 @@
     <tr class="header">
       <th>ID</th>
       <th>Page ID</th>
-      <th>Name</th>
       <th>Position</th>
+      <th>Name</th>
       <th>Visible</th>
       <th>Content</th>
       <th>Type</th>
@@ -23,8 +23,8 @@
     <tr>
       <td><%= section.id %></td>
       <td><%= section.page_id %></td>
-      <td><%= section.name %></td>
       <td><%= section.position %></td>
+      <td><%= section.name %></td>
       <!-- <td class="center"><%= section.visible ? 'Yes' : 'No' %></td> -->
       <td class="center"><%= status_tag(section.visible) %></td>
       <td><%= section.content %></td>

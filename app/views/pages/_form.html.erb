@@ -1,7 +1,13 @@
 <table summary="Page form fields">
   <tr>
-    <th>Subject _ID</th>
-    <td><%= f.text_field(:subject_id) %></td>
+    <th>Subject</th>
+    <!-- <td><%= f.text_field(:subject_id) %></td> -->
+    <!-- Go to the subjects and map them into an array [name and id]
+         The sort order is specfied by the @subjects instance definition in the subject contoller in
+        conjunction with the subject model scope defintion of 'sorted'
+        ==> @subjects = Subject.sorted ==>   scope :sorted, lambda { order("name ASC") }
+    -->
+    <td><%= f.select(:subject_id, @subjects.map {|s| [s.name, s.id]}) %></td>
   </tr>
   <tr>
     <th>Name</th>
@@ -13,10 +19,12 @@
   </tr>
   <tr>
     <th>Position</th>
-    <td><%= f.text_field(:position) %></td>
+    <!-- <td><%= f.text_field(:position) %></td> -->
+    <td><%= f.select(:position, 1..@page_count) %></td>
   </tr>
   <tr>
     <th>Visible</th>
-    <td><%= f.text_field(:visible) %></td>
+    <!-- <td><%= f.text_field(:visible) %></td> -->
+    <td><%= f.check_box(:visible) %></td>
   </tr>
 </table>

@@ -11,8 +11,9 @@ class SubjectsController < ApplicationController
   end
 
   def new
-    #     Having an object here ()@subject) allows us, or rails, or even our database to set default values for the object's attributes. If left out, all those form values would just simply be blank but by defining it, then we'll get any default values that have been set. Those will be passed along to our form.
+    #     Having an object here (@subject) allows us, or rails, or even our database to set default values for the object's attributes. If left out, all those form values would just simply be blank but by defining it, then we'll get any default values that have been set. Those will be passed along to our form.
     @subject = Subject.new({:name => 'Default'})
+    @subject_count = Subject.count + 1
   end
 
   def create
@@ -25,12 +26,15 @@ class SubjectsController < ApplicationController
       redirect_to(subjects_path)  # resourceful route back to index page
     else
       # If save fails, redisplay the form so user can fix problems
+      @subject_count = Subject.count + 1
       render('new') # new.html.erb - this does not perform the new action. This just renders that form template
+
     end
   end
 
   def edit
       @subject = Subject.find(params[:id])
+      @subject_count = Subject.count + 1
   end
 
   def update
@@ -43,6 +47,7 @@ class SubjectsController < ApplicationController
         redirect_to(subject_path(@subject))
       else
         # If save fails, redisplay the form so user can fix problems
+        @subject_count = Subject.count
         render('edit')
       end
   end
@@ -62,6 +67,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name, :position, :visible)
+    params.require(:subject).permit(:name, :position, :visible, :created_at)
   end
 end

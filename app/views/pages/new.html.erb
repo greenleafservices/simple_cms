@@ -6,7 +6,7 @@
   <h2>Create Page</h2>
 
   <%= form_for(@page) do |f| %>
-
+<!--  This will call the partial _form.html.erb for this view -->
     <%= render(:partial => 'form', :locals => {:f => f}) %>
 
     <div class="form-buttons">

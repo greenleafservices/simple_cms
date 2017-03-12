@@ -12,6 +12,10 @@ class SectionsController < ApplicationController
 
   def new
     @section = Section.new({:name => 'Default'})
+    # Add 1 to section count - in case this is for a new section
+    # Pass this to the partial form
+    @section_count = Section.count + 1
+    @pages = Page.sorted
   end
 
   def create
@@ -24,12 +28,16 @@ class SectionsController < ApplicationController
       redirect_to(sections_path)  # resourceful route back to index page
     else
       # If save fails, redisplay the form so user can fix problems
+      @section_count = Section.count + 1
+      @pages = Page.sorted
       render('new') # new.html.erb - this does not perform the new action. This just renders that form template
     end
   end
 
   def edit
     @section = Section.find(params[:id])
+    @section_count = Section.count
+    @pages = Page.sorted
   end
 
   def update
@@ -41,6 +49,8 @@ class SectionsController < ApplicationController
         flash[:notice] = "Section updated successfully."
         redirect_to(section_path(@section))
       else
+        @section_count = Section.count
+        @pages = Page.sorted
         # If save fails, redisplay the form so user can fix problems
         render('edit')
       end
