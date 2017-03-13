@@ -11,7 +11,8 @@ class SectionsController < ApplicationController
   end
 
   def new
-    @section = Section.new({:name => 'Default'})
+    # @section = Section.new({:name => 'Default'})
+    @section = Section.new()
     # Add 1 to section count - in case this is for a new section
     # Pass this to the partial form
     @section_count = Section.count + 1

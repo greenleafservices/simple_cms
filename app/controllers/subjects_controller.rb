@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
 
   def new
     #     Having an object here (@subject) allows us, or rails, or even our database to set default values for the object's attributes. If left out, all those form values would just simply be blank but by defining it, then we'll get any default values that have been set. Those will be passed along to our form.
-    @subject = Subject.new({:name => 'Default'})
+    @subject = Subject.new()
     @subject_count = Subject.count + 1
   end
 
