@@ -2,6 +2,9 @@ class SectionsController < ApplicationController
 
     layout 'admin'
 
+    before_action :find_pages, :only => [:new, :create, :edit, :update]
+    before_action :set_section_count, :only => [:new, :create, :edit, :update]
+
   def index
     @sections = Section.sorted # ==> multiple instance
   end
@@ -15,8 +18,6 @@ class SectionsController < ApplicationController
     @section = Section.new()
     # Add 1 to section count - in case this is for a new section
     # Pass this to the partial form
-    @section_count = Section.count + 1
-    @pages = Page.sorted
   end
 
   def create
@@ -29,16 +30,12 @@ class SectionsController < ApplicationController
       redirect_to(sections_path)  # resourceful route back to index page
     else
       # If save fails, redisplay the form so user can fix problems
-      @section_count = Section.count + 1
-      @pages = Page.sorted
       render('new') # new.html.erb - this does not perform the new action. This just renders that form template
     end
   end
 
   def edit
     @section = Section.find(params[:id])
-    @section_count = Section.count
-    @pages = Page.sorted
   end
 
   def update
@@ -50,8 +47,7 @@ class SectionsController < ApplicationController
         flash[:notice] = "Section updated successfully."
         redirect_to(section_path(@section))
       else
-        @section_count = Section.count
-        @pages = Page.sorted
+
         # If save fails, redisplay the form so user can fix problems
         render('edit')
       end
@@ -75,4 +71,15 @@ class SectionsController < ApplicationController
     params.require(:section).permit(:page_id, :name, :position, :visible, :content, :content_type)
   end
 
+  def find_pages
+      @pages = Page.sorted
+  end
+
+  def set_section_count
+    @section_count = Section.count
+    if params[:action] == 'new' || params[:action] == 'create'
+      @section_count += 1
+    end
+  end
+  
 end
