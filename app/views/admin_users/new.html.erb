@@ -1,0 +1,20 @@
+<% @page_title = "New Admin" %>
+
+<%= link_to("<< Back to List", admin_users_path, :class => 'back-link') %>
+
+<div class="admins new">
+  <h2>Create Admin</h2>
+<!-- The form_for helper below is smart enough to know that Subject is a new object and it knows that the way that you create a new object when you're using resourceful routes, is that you POST a request to that URL. So we don't have to actually specify it,   -->
+  <%= form_for(@adminUser) do |f| %>
+<!--  the helper above will have the variable f that's available throughout the rest of the form.-->
+
+<!--  This will call the partial _form.html.erb for this view -->
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    <!-- the section locals send the variable you want the partial to use -->
+
+    <div class="form-buttons">
+      <%= f.submit("Create Admin") %>
+    </div>
+
+  <% end %>
+</div>
