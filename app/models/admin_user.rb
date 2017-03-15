@@ -35,6 +35,8 @@ class AdminUser < ApplicationRecord
                     :length => { :maximum => 100 },
                     :format => EMAIL_REGEX,
                     :confirmation => true
+  validates :password_digest, :presence => true,
+                      :length => { :maximum => 100 }
   validate :username_is_allowed
   # validate :no_new_users_on_monday, :on => :create
 
@@ -43,7 +45,7 @@ class AdminUser < ApplicationRecord
       # Or: first_name + ' ' + last_name
       # Or: [first_name, last_name].join(' ')
   end
-    
+
   private
     def username_is_allowed
       if FORBIDDEN_USERNAMES.include?(username)
