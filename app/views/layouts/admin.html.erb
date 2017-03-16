@@ -11,6 +11,17 @@
         <h1>Simple CMS Admin</h1>
     </div>
       <div id="main">
+        <!--  ***************  Check for any alerts, error or notices to be flashed *********************  -->
+        <% if !flash[:alert].blank? %>
+          <div class="alert">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <% if !flash[:error].blank? %>
+          <div class="error">
+            <%= flash[:error] %>
+          </div>
+        <% end %>
         <% if !flash[:notice].blank? %>
           <div class="notice">
             <%= flash[:notice] %>

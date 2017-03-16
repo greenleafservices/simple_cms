@@ -22,10 +22,10 @@ class AccessController < ApplicationController
 
       if authorized_user
         session[:user_id] = authorized_user.id
-        flash[:notice] = "You are now logged in."
+        flash[:notice] = "You are now logged in." #CSS in admin_additions.css.scss
         redirect_to(admin_path)
       else
-        flash.now[:notice] = "Invalid username/password combination."
+        flash.now[:alert] = "Invalid username/password combination."
         render('login')
       end
 

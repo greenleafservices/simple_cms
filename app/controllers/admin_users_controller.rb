@@ -1,22 +1,26 @@
 class AdminUsersController < ApplicationController
 
-  layout 'admin' # generic header, footerm CSS
+  layout 'admin' # generic header, footer, CSS
 
     before_action :confirm_logged_in
 
   def index
-      @adminUsers = AdminUser.sorted #default sort defined in subject model
+      @admin_users = AdminUser.sorted #default sort defined in subject model
+  end
+
+  def show
+    @admin_user = AdminUser.find(params[:id])
   end
 
   def new
-      @adminUser = AdminUser.new()
+      @admin_user = AdminUser.new()
   end
 
   def create
     # Instantiate a new object using form parameters
-    @adminUser = AdminUser.new(adminUser_params) #private def below
+    @admin_user = AdminUser.new(adminUser_params) #private def below
     # Save the object
-    if @adminUser.save
+    if @admin_user.save
       # If save succeeds, show notice and redirect to the index action
       flash[:notice] = "Admin created successfully."
       redirect_to(admin_users_path)  # resourceful route back to index page
@@ -28,24 +32,40 @@ class AdminUsersController < ApplicationController
   end
 
   def edit
+    @admin_user = AdminUser.find(params[:id])
+  end
+
+  def update
+    # Find a new object using form parameters
+      @admin_user = AdminUser.find(params[:id])
+      # Update the object
+      if @admin_user.update_attributes(adminUser_params) #private def below
+        # If save succeeds, show notice and redirect to the show action
+        flash[:notice] = "Admin updated successfully."
+        redirect_to(admin_user_path(@admin_user)) # call show.html.erb
+      else
+        # If save fails, redisplay the form so user can fix problems
+        render('edit')
+      end
   end
 
   def delete
-      @adminUser = AdminUser.find(params[:id])
+      @admin_user = AdminUser.find(params[:id])
   end
 
   def destroy
-    @adminUser = AdminUser.find(params[:id])
-    @adminUser.destroy
+    @admin_user = AdminUser.find(params[:id])
+    @admin_user.destroy
     # show notice and redirect to index
-    flash[:notice] = "Admin '#{@adminUser.name}' destroyed successfully."
+    flash[:notice] = "Admin '#{@admin_user.name}' destroyed successfully."
     redirect_to(admin_users_path)
   end
 
   private
 
   def adminUser_params
-    params.require(:admin_user).permit(:first_name, :last_name, :email, :username, :password_digest, :created_at)
+    # Permit :password, but NOT :password_digest
+    params.require(:admin_user).permit(:first_name, :last_name, :email, :username, :password, :created_at)
   end
 
 end

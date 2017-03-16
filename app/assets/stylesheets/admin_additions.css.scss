@@ -56,10 +56,31 @@ a.action.large {
 }
 
 /* CRUD */
+.alert {
+  height: 1.25em;
+  font-size: 20px;
+  padding: 0.5em;
+  text-align: center;
+  //background: #B6D491;
+  background: #FF0000;
+  //color: #4C2516;
+  color: #FFFFFF;
+}
 
 .notice {
   height: 1.25em;
   font-size: 20px;
+  padding: 0.5em;
+  text-align: center;
+  background: #B6D491;
+  //background: #FF0000;
+  color: #4C2516;
+  //color: #FFFFFF;
+}
+
+.error {
+  height: 3.25em;
+  font-size: 80px;
   padding: 0.5em;
   text-align: center;
   //background: #B6D491;
