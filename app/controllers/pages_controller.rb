@@ -3,19 +3,20 @@ class PagesController < ApplicationController
     layout 'admin'
 
     before_action :confirm_logged_in
+    before_action :find_subject
     before_action :find_subjects, :only => [:new, :create, :edit, :update]
     before_action :set_page_count, :only => [:new, :create, :edit, :update]
 
-  def index
-    @pages = Page.sorted # ==> multiple instance
-  end
+    def index
+      @pages = @subject.pages.sorted
+    end
 
   def show
       @page = Page.find(params[:id]) # ==> single instance
   end
 
   def new
-    @page = Page.new
+    @page = Page.new(:subject_id => @subject.id)
   end
 
   def create
@@ -25,7 +26,7 @@ class PagesController < ApplicationController
     if @page.save
       # If save succeeds, show notice and redirect to the index action
       flash[:notice] = "Page created successfully."
-      redirect_to(pages_path)  # resourceful route back to index page
+      redirect_to(pages_path(:subject_id => @subject.id))
     else
       # If save fails, redisplay the form so user can fix problems
       render('new') # new.html.erb - this does not perform the new action. This just renders that form template
@@ -66,6 +67,10 @@ class PagesController < ApplicationController
 
   def page_params
     params.require(:page).permit(:name, :position, :visible, :subject_id, :permalink)
+  end
+
+  def find_subject
+      @subject = Subject.find(params[:subject_id])
   end
 
   def find_subjects

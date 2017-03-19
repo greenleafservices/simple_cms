@@ -1,6 +1,6 @@
 <% @page_title = "Show Page" %>
 
-<%= link_to("<< Back to List", pages_path, :class => 'back-link') %>
+<%= link_to("<< Back to List", pages_path(:subject_id => @subject.id), :class => 'back-link') %>
 <!--  pages_path above is a URL helper -->
 <div class="pages show">
   <h2>Show Pages</h2>

@@ -19,12 +19,13 @@
       values to the subject value -->
     <% @subjects.each do |subject| %>
     <tr>
-      <td><%= subject.id %></td>
-      <td><%= subject.name %></td>
-      <td class="center"><%= status_tag(subject.visible) %></td>
-      <td><%= subject.position %></td>
-      <td class="center"><%= subject.pages.size %></td>
+      <td class="col-30"><%= subject.id %></td>
+      <td class="col-240"><%= subject.name %></td>
+      <td class="center col-30"><%= status_tag(subject.visible) %></td>
+      <td class="center col-30"><%= subject.position %></td>
+      <td class="center col-30"><%= subject.pages.size %></td>
       <td class="actions">
+        <%= link_to("View Pages", pages_path(:subject_id => subject.id), :class => 'action show') %>
         <%= link_to("Show", subject_path(subject), :class => 'action show') %>
         <%= link_to("Edit", edit_subject_path(subject), :class => 'action edit') %>
         <%= link_to("Delete", delete_subject_path(subject), :class => 'action delete') %>

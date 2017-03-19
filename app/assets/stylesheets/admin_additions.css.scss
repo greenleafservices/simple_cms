@@ -6,7 +6,7 @@
   padding-left: 10px;
   padding-right: 10px;
   h2 {
-    // width: 100%;
+    width: 100%;
     text-align: center;
     }
 }
@@ -45,7 +45,7 @@ a.action.large {
 
 /* small action buttons */
 .actions {
-  width: 200px;
+  width: 250px;
   a.action {
     float: left;
     min-width: 3.5em;
@@ -54,6 +54,7 @@ a.action.large {
     font-size: 0.7em;
   }
 }
+
 
 /* CRUD */
 .alert {
@@ -102,7 +103,7 @@ a.action.large {
 .index {
   table {
     clear: both;
-    width: 100%;
+    width: auto;
     tr td { border: 1px solid #666666; }
   }
 }
