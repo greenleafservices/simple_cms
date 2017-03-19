@@ -1,0 +1,20 @@
+<!-- if there are no subjects, default to an empty array -->
+<% subjects ||= [] %>
+<!--  Make a list of subjects and pages with permalinks-->
+<ul>
+<% subjects.each do |subject| %>
+  <li>
+    <%= subject.name %>
+    <ul>
+    <% subject.pages.visible.sorted.each do |page| %>
+    <!-- Make a clickable link for the permalink -->
+      <li><%= link_to_unless_current(page.name, public_show_path(page.permalink)) %></li>
+      <!-- public_show_path helper was 'created' in the routes file because
+      the generate controller process did not create it - no prefix for the GET verb => public#show action - see routes.rb
+      get 'show/:permalink', :to => 'public#show', :as => 'public_show'
+    -->
+    <% end %>
+    </ul>
+  </li>
+  <% end %>
+</ul>

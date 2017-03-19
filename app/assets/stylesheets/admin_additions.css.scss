@@ -3,10 +3,10 @@
 
 /* Structure */
 #content {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
   h2 {
-    width: 100%;
+    // width: 100%;
     text-align: center;
     }
 }
@@ -115,7 +115,6 @@ a.action.large {
     tr td { border: 1px solid #666666; }
   }
 }
-
 .section + .section {
   padding-top: 0.5em;
   margin-top: 0.5em;

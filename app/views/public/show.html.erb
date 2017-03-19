@@ -1,0 +1,44 @@
+<% @page_title = @page.name %>
+
+<h2><%= @page.name %></h2>
+<div class="pages index">
+<table class = "listing" summary="Section detail view">
+  <tr class="header">
+    <th>ID</th>
+    <th>Name</th>
+    <th>Content</th>
+    <th>Created</th>
+    <th>Updated</th>
+  </tr>
+<% @page.sections.visible.sorted.each do |section| %>
+  <!-- <div class="section"> -->
+
+    <!-- <h3>Section Name</h3>
+    <%= section.name %>
+    <h3>Section Content</h3>
+    <% case section.content_type %>
+    <% when 'HTML' %>
+      <%= raw(sanitize(section.content, :tags => ['strong', 'em', 'a'])) %>
+    <% when 'Text' %>
+      <%= simple_format(section.content) %>
+    <% end %> -->
+
+
+      <tr>
+        <td><%= section.id %></td>
+        <td><%= section.name %></td>
+        <td>
+        <% case section.content_type %>
+          <% when 'HTML' %>
+            <%= raw(sanitize(section.content, :tags => ['strong', 'em', 'a'])) %>
+          <% when 'Text' %>
+            <%= simple_format(section.content) %>
+        <% end %>
+        </td>
+        <td><%= section.created_at %></td>
+        <td><%=section.updated_at %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
