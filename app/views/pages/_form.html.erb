@@ -9,7 +9,10 @@
         conjunction with the subject model scope defintion of 'sorted'
         ==> @subjects = Subject.sorted ==>   scope :sorted, lambda { order("name ASC") }
     -->
-    <td><%= f.select(:subject_id, @subjects.map {|s| [s.name, s.id]}) %></td>
+    <!-- <td><%#= f.select(:subject_id, @subjects.map {|s| [s.name, s.id]}) %></td> -->
+    <!-- Removing the line above disallows and repositioning of the page to another subject -->
+
+    <td><%= f.object.subject.name %></td> <!--Static display of subject associated with this page  -->
   </tr>
   <tr>
     <th>Name</th>

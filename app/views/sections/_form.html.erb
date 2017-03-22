@@ -2,27 +2,21 @@
 
 <table summary="Section form fields">
   <tr>
-    <th>Page Name</th>
-    <!-- <td><%= f.text_field(:page_id) %></td> -->
-    <!-- Go to the pages and map them into an array [name and id]
-         The sort order is specfied by the @pages instance definition in the page contoller in
-        conjunction with the page model scope defintion of 'sorted'
-        ==> @pages = Page.sorted ==>   scope :sorted, lambda { order("position ASC") }
-    -->
-    <td><%= f.select(:page_id, @pages.map {|p| [p.name, p.id]}) %></td>
-  </tr>
-  <tr>
     <th>Section Name</th>
     <td><%= f.text_field(:name) %></td>
   </tr>
   <tr>
+    <th>Page</th>
+    <!-- <td><%#= f.select(:page_id, @pages.map {|p| [p.name, p.id]}) %></td> -->
+    <!-- Removing the line above disallows and repositioning of the section to another page -->
+     <td><%= f.object.page.name %></td> <!--Static display of page associated with this section  -->
+  </tr>
+  <tr>
     <th>Position</th>
-    <!-- <td><%= f.text_field(:position) %></td> -->
     <td><%= f.select(:position, 1..@section_count) %></td>
   </tr>
   <tr>
     <th>Visible</th>
-    <!-- <td><%= f.text_field(:visible) %></td> -->
     <td><%= f.check_box(:visible) %></td>
   </tr>
   <tr>

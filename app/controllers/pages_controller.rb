@@ -4,7 +4,6 @@ class PagesController < ApplicationController
 
     before_action :confirm_logged_in
     before_action :find_subject
-    before_action :find_subjects, :only => [:new, :create, :edit, :update]
     before_action :set_page_count, :only => [:new, :create, :edit, :update]
 
     def index
@@ -22,6 +21,7 @@ class PagesController < ApplicationController
   def create
     # Instantiate a new object using mass assignment and form parameters
     @page = Page.new(page_params) #private def below
+    @page.subject = @subject
     # Save the object
     if @page.save
       # If save succeeds, show notice and redirect to the index action
@@ -44,7 +44,7 @@ class PagesController < ApplicationController
       if @page.update_attributes(page_params) #private def below
         # If save succeeds, show notice and redirect to the show action
         flash[:notice] = "Page updated successfully."
-        redirect_to(page_path(@page))
+        redirect_to(page_path(@page, :subject_id => @subject.id))
       else
         # If save fails, redisplay the form so user can fix problems
         render('edit')
@@ -60,12 +60,12 @@ class PagesController < ApplicationController
     @page.destroy
     # show notice and redirect to index
     flash[:notice] = "Page '#{@page.name}' destroyed successfully."
-    redirect_to(pages_path)
+    redirect_to(page_path(:subject_id => @subject.id))
   end
 
   private
 
-  def page_params
+  def page_params # This is an example of mass assignment
     params.require(:page).permit(:name, :position, :visible, :subject_id, :permalink)
   end
 
@@ -73,12 +73,8 @@ class PagesController < ApplicationController
       @subject = Subject.find(params[:subject_id])
   end
 
-  def find_subjects
-    @subjects = Subject.sorted
-  end
-
   def set_page_count
-    @page_count = Page.count
+    @page_count = @subject.pages.count
     if params[:action] == 'new' || params[:action] == 'create'
       @page_count += 1
     end

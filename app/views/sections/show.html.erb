@@ -1,12 +1,11 @@
 <% @page_title = "Show Section" %>
 
-
-<%= link_to("<< Back to List", sections_path, :class => 'back-link') %>
+<%= link_to("<< Back to List", sections_path(:page_id => @page.id), :class => 'back-link') %>
 <!--  pages_path above is a URL helper -->
-<div class="section show">
+<div class="section index">
   <h2>Show Sections</h2>
 
-  <table summary="Section detail view">
+  <table class="listing"summary="Section detail view">
     <tr>
       <th>ID</th>
       <td><%= @section.page_id %></td>
@@ -29,7 +28,15 @@
     </tr>
     <tr>
       <th>Content</th>
-      <td><%= @section.content %></td>
+      <!-- <td><%= @section.content %></td> -->
+      <td>
+        <% case @section.content_type %>
+          <% when 'HTML' %>
+            <%= raw(sanitize(@section.content, :tags => ['strong', 'em', 'a'])) %>
+          <% when 'Text' %>
+            <%= simple_format(@section.content) %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th>Created</th>

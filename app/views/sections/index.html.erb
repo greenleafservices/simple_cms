@@ -4,7 +4,7 @@
 <div class="sections index">
   <h2>Sections</h2>
 
-  <%= link_to("Add New Section", new_section_path, :class => 'action new') %>
+  <%= link_to("Add New Section", new_section_path(:page_id => @page.id), :class => 'action new') %>
 
   <table class="listing" summary="Section list">
     <tr class="header">
@@ -27,13 +27,20 @@
       <td><%= section.name %></td>
       <!-- <td class="center"><%= section.visible ? 'Yes' : 'No' %></td> -->
       <td class="center"><%= status_tag(section.visible) %></td>
-      <td><%= section.content %></td>
+      <!-- <td><%= section.content %></td> -->
+      <td>
+        <% case section.content_type %>
+          <% when 'HTML' %>
+            <%= raw(sanitize(section.content, :tags => ['strong', 'em', 'a'])) %>
+          <% when 'Text' %>
+            <%= simple_format(section.content) %>
+        <% end %>
+      </td>
       <td><%= section.content_type %></td>
-
       <td class="actions">
-        <%= link_to("Show", section_path(section), :class => 'action show') %>
-        <%= link_to("Edit", edit_section_path(section), :class => 'action edit') %>
-        <%= link_to("Delete", delete_section_path(section), :class => 'action delete') %>
+        <%= link_to("Show", section_path(section, :page_id => @page.id), :class => 'action show') %>
+        <%= link_to("Edit", edit_section_path(section, :page_id => @page.id), :class => 'action edit') %>
+        <%= link_to("Delete", delete_section_path(section, :page_id => @page.id), :class => 'action delete') %>
       </td>
     </tr>
     <% end %>
@@ -41,6 +48,6 @@
   <br>
   <br>
   <p>
-    <%= link_to("Return to Main Menu", admin_path) %>
+    <%= link_to("<< Return to Parent Page", pages_path(:subject_id => @page.subject_id)) %>
   </p>
 </div>

@@ -1,11 +1,12 @@
 <% @page_title = "Edit Section" %>
 
-<%= link_to("<< Back to List", sections_path, :class => 'back-link') %>
+<%= link_to("<< Back to List", sections_path(:page_id => @page.id), :class => 'back-link') %>
 
 <div class="sections edit">
   <h2>Update Section</h2>
+<!--  The next line will generate a PATCH request using the rails routes helper -->
+  <%= form_for(@section, :url => section_path(@section, :page_id => @page.id)) do |f| %>
 
-  <%= form_for(@section) do |f| %>
 <!--  This will call the partial _form.html.erb for this view -->
       <%= render(:partial => 'form', :locals => {:f => f}) %>
 
