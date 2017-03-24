@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 
   def create
     # Instantiate a new object using mass assignment and form parameters
-    @page = Page.new(page_params) #private def below
+    @page = Page.new(page_params) #private def below creating a white list for the object 
     @page.subject = @subject
     # Save the object
     if @page.save
