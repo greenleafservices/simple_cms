@@ -1,5 +1,6 @@
 <!-- if there are no subjects, default to an empty array -->
 <% subjects ||= [] %>
+<%= link_to("Return to Main Page",root_path, :class => 'action show') %>
 <!--  Make a list of subjects and pages with permalinks-->
 <ul>
 <% subjects.each do |subject| %>
